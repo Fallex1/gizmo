@@ -1,7 +1,7 @@
 package com.learningfolder.app
 
 import android.app.Activity
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.*
 import kotlin.random.Random
@@ -41,19 +41,20 @@ class FlashcardActivity : Activity() {
         }
         findViewById<Button>(R.id.shuffle).setOnClickListener { cards.shuffle(Random.Default); idx = 0; showingAnswer = false; knownCount = 0; show() }
         findViewById<Button>(R.id.addCard).setOnClickListener {
-            val i = Intent(this, AddCardActivity::class.java); i.putExtra("deckId", deckId); startActivityForResult(i, 1)
-        }
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            // reload
-            val deckName = findViewById<TextView>(R.id.deckName)
-            val cardText = findViewById<TextView>(R.id.cardText)
-            val progress = findViewById<TextView>(R.id.progress)
-            cards = ArrayList(db.cards(deckId)); idx = 0; showingAnswer = false
-            if (cards.isEmpty()) { cardText.text = "No cards. Tap Add Card."; progress.text = "0/0" }
-            else { cardText.text = cards[0].second; progress.text = "1/${cards.size}  •  Known: 0" }
+            val frontInput = EditText(this)
+            val backInput = EditText(this)
+            val layout = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; addView(frontInput); addView(backInput) }
+            frontInput.hint = "Front (question)"
+            backInput.hint = "Back (answer)"
+            AlertDialog.Builder(this).setTitle("Add Card").setView(layout)
+                .setPositiveButton("Save") { _, _ ->
+                    val f = frontInput.text.toString().trim()
+                    val b = backInput.text.toString().trim()
+                    if (f.isNotEmpty() && b.isNotEmpty()) {
+                        db.addCard(deckId, f, b)
+                        load()
+                    }
+                }.setNegativeButton("Cancel", null).show()
         }
     }
 }

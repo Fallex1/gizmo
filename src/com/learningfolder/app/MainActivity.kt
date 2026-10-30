@@ -12,16 +12,21 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        db = DbHelper(this)
-        val sb = findViewById<EditText>(R.id.searchBar)
-        val recent = findViewById<TextView>(R.id.recent)
-        val (d, c, k) = db.stats()
-        recent.text = "Decks: $d  Cards: $c  Known: $k"
-        findViewById<Button>(R.id.btnSearch).setOnClickListener {
-            val i = Intent(this, SearchActivity::class.java); i.putExtra("q", sb.text.toString()); startActivity(i)
+        try {
+            db = DbHelper(this)
+            val sb = findViewById<EditText>(R.id.searchBar)
+            val recent = findViewById<TextView>(R.id.recent)
+            val (d, c, k) = db.stats()
+            recent.text = "Decks: $d  Cards: $c  Known: $k"
+            findViewById<Button>(R.id.btnSearch).setOnClickListener {
+                val i = Intent(this, SearchActivity::class.java); i.putExtra("q", sb.text.toString()); startActivity(i)
+            }
+            findViewById<Button>(R.id.btnDecks).setOnClickListener { startActivity(Intent(this, DecksActivity::class.java)) }
+            findViewById<Button>(R.id.btnSchools).setOnClickListener { startActivity(Intent(this, SchoolsActivity::class.java)) }
+            findViewById<Button>(R.id.btnProfile).setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
+        } catch (t: Throwable) {
+            val recent = findViewById<TextView>(R.id.recent)
+            recent.text = "CRASH: ${t}\n${t.stackTraceToString().take(800)}"
         }
-        findViewById<Button>(R.id.btnDecks).setOnClickListener { startActivity(Intent(this, DecksActivity::class.java)) }
-        findViewById<Button>(R.id.btnSchools).setOnClickListener { startActivity(Intent(this, SchoolsActivity::class.java)) }
-        findViewById<Button>(R.id.btnProfile).setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
     }
 }
