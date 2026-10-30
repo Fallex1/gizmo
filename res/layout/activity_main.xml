@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F3F4F6">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#4F46E5" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="LearningFolder" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" />
+        <EditText android:id="@+id/searchBar" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Search everything..." android:background="#FFFFFF" android:padding="10dp" android:layout_marginTop="8dp" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp">
+        <Button android:id="@+id/btnSearch" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Search" />
+        <Button android:id="@+id/btnDecks" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Decks" />
+        <Button android:id="@+id/btnSchools" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Schools" />
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp">
+            <Button android:id="@+id/btnProfile" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Profile &amp; Progress" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recent study" android:textStyle="bold" android:paddingTop="12dp" android:paddingBottom="4dp" />
+            <TextView android:id="@+id/recent" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="4dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

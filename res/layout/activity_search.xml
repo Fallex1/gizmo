@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F3F4F6">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#4F46E5" android:padding="12dp">
+        <EditText android:id="@+id/query" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Search users, decks, cards, schools..." android:background="#FFFFFF" android:padding="10dp" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="4dp">
+        <Button android:id="@+id/tUsers" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Users" />
+        <Button android:id="@+id/tDecks" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Decks" />
+        <Button android:id="@+id/tCards" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Cards" />
+        <Button android:id="@+id/tSchools" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Schools" />
+    </LinearLayout>
+    <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" android:layout_gravity="center" />
+    <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="12sp" android:padding="8dp" />
+    <ListView android:id="@+id/list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+    <Button android:id="@+id/loadMore" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Load more" android:visibility="gone" />
+</LinearLayout>
