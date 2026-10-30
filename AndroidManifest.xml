@@ -15,9 +15,7 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".DecksActivity" />
         <activity android:name=".FlashcardActivity" />
-        <activity android:name=".AITutorActivity" />
         <activity android:name=".SchoolsActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AddCardActivity" />
     </application>
 </manifest>
